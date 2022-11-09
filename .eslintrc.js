@@ -2,14 +2,14 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: 'standard-with-typescript',
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.json']
   },
   rules: {
     'no-console': 'error',
@@ -20,9 +20,22 @@ module.exports = {
       'error',
       {
         require: {
-          ArrowFunctionExpression: true,
-        },
-      },
+          ArrowFunctionExpression: true
+        }
+      }
     ],
-  },
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      {
+        multiline: {
+          delimiter: 'semi',
+          requireLast: true
+        },
+        singleline: {
+          delimiter: 'semi',
+          requireLast: false
+        }
+      }
+    ]
+  }
 };
