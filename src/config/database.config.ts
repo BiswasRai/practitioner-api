@@ -2,6 +2,7 @@
 import * as fs from 'fs';
 
 import { Sequelize } from 'sequelize';
+
 import { envConfig } from './environment.config';
 
 /**
@@ -28,7 +29,7 @@ const sequelize = new Sequelize(
   DATABASE_PASSWORD,
   {
     host: DATABASE_HOST,
-    dialect: 'mysql',
+    dialect: 'postgres',
     dialectOptions: {
       bigNumberStrings: true,
       ssl: {

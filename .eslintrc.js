@@ -12,6 +12,7 @@ module.exports = {
     project: ['./tsconfig.json']
   },
   rules: {
+    indent: 'off',
     'no-console': 'error',
     '@typescript-eslint/semi': 'off',
     'jsdoc/check-tag-names': 'off',
