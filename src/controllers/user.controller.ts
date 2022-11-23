@@ -1,14 +1,12 @@
 import { Request, Response } from 'express';
-import {
-  fetchAllPractitioner,
-  removePractitioner
-} from '../dao/practitioner.dao';
 
 import {
-  fetchById as fetchPractitionerById,
-  handleCreatePractitioner,
-  handleUpdatePractitioner
-} from '../services/practitioner.services';
+  fetchById as fetchUserById,
+  handleCreateUser,
+  handleUpdateUser
+} from '../services/user.services';
+
+import { fetchAllUsers, removeUser } from '../dao/user.dao';
 
 import { responseFormatter } from '../utils/responseUtils';
 
@@ -20,13 +18,13 @@ import { responseFormatter } from '../utils/responseUtils';
  * @returns {Promise<Response>}
  */
 const fetchAll = async (_: Request, res: Response): Promise<Response> => {
-  const users = await fetchAllPractitioner();
+  const users = await fetchAllUsers();
 
   return res.status(200).json(
     responseFormatter({
       status: 200,
       data: users,
-      message: { type: 'fetch', data: 'Practitioner' }
+      message: { type: 'fetch', data: 'User' }
     })
   );
 };
@@ -39,7 +37,7 @@ const fetchAll = async (_: Request, res: Response): Promise<Response> => {
  * @returns {Promise<Response>}
  */
 const fetchById = async (req: Request, res: Response): Promise<Response> => {
-  const response = await fetchPractitionerById(+req.params.id);
+  const response = await fetchUserById(+req.params.id);
 
   return res.status(response.status).json(response);
 };
@@ -52,39 +50,39 @@ const fetchById = async (req: Request, res: Response): Promise<Response> => {
  * @returns {Promise<Response>}
  */
 const create = async (req: Request, res: Response): Promise<Response> => {
-  const response = await handleCreatePractitioner(req.body);
+  const response = await handleCreateUser(req.body);
 
   return res.status(response.status).json(response);
 };
 
 /**
- * Function to update practitioner.
+ * Function to update User.
  *
  * @param {Request} req
  * @param {Response} res
  * @returns {Promise<Response>}
  */
 const update = async (req: Request, res: Response): Promise<Response> => {
-  const response = await handleUpdatePractitioner(+req.params.id, req.body);
+  const response = await handleUpdateUser(+req.params.id, req.body);
 
   return res.status(response.status).json(response);
 };
 
 /**
- * Function to remove practitioner.
+ * Function to remove User.
  *
  * @param {Request} req
  * @param {Response} res
  * @returns {Promise<Response>}
  */
 const remove = (req: Request, res: Response): Response => {
-  const removedUser = removePractitioner(+req.params.id);
+  const removedUser = removeUser(+req.params.id);
 
   return res.status(200).json(
     responseFormatter({
       status: 200,
       data: removedUser,
-      message: { type: 'delete', data: 'Practitioner' }
+      message: { type: 'delete', data: 'User' }
     })
   );
 };

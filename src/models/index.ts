@@ -9,7 +9,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV ?? 'development';
 const config = require(__dirname + '/config.ts')[env];
 
-export const db: any = {};
+const db: any = {};
 
 let sequelize: any;
 if (config.use_env_variable) {
@@ -21,7 +21,7 @@ if (config.use_env_variable) {
     config.password,
     {
       host: config.database_host,
-      dialect: 'postgres',
+      dialect: 'mysql',
       dialectOptions: {
         bigNumberStrings: true,
         ssl: {
@@ -54,3 +54,5 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+export default db;

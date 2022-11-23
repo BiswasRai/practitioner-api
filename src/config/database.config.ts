@@ -23,13 +23,13 @@ const {
   DATABASE_NAME
 } = envConfig;
 
-const sequelize = new Sequelize(
+export const sequelize = new Sequelize(
   DATABASE_NAME,
   DATABASE_USERNAME,
   DATABASE_PASSWORD,
   {
     host: DATABASE_HOST,
-    dialect: 'postgres',
+    dialect: 'mysql',
     dialectOptions: {
       bigNumberStrings: true,
       ssl: {
