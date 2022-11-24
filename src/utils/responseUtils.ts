@@ -46,6 +46,9 @@ const handleSuccessMessage = (message: {
     case 'delete':
       return SUCCESS_MESSAGE.DELETED(message.data);
 
+    case 'login':
+      return SUCCESS_MESSAGE.LOGIN(message.data);
+
     default:
       return '';
   }

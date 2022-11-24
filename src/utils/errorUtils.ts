@@ -46,6 +46,9 @@ const handleErrorMessage = (message: {
     case 'delete':
       return ERROR_MESSAGE.DELETED(message.data);
 
+    case 'login':
+      return ERROR_MESSAGE.LOGIN(message.data);
+
     default:
       return '';
   }

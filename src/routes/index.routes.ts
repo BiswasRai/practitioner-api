@@ -1,11 +1,14 @@
 import { Router } from 'express';
+import { authenticate } from '../middleware/authenticate';
+import loginSignupRouter from './loginSignup.routes';
 
 import practitionerRouter from './practitioner.routes';
 import userRouter from './user.routes';
 
 const router = Router();
 
-router.use('/users', userRouter);
-router.use('/practitioner', practitionerRouter);
+router.use('/', loginSignupRouter);
+router.use('/users', authenticate, userRouter);
+router.use('/practitioner', authenticate, practitionerRouter);
 
 export default router;

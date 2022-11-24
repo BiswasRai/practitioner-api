@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import {
-  create,
   remove,
   update,
   fetchAll,
@@ -12,7 +11,6 @@ const userRouter = Router();
 
 userRouter.get('/', fetchAll);
 userRouter.get('/:id', fetchById);
-userRouter.post('/', create);
 userRouter.put('/:id', update);
 userRouter.delete('/:id', remove);
 

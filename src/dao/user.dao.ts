@@ -64,10 +64,10 @@ export const removeUser = async (id: number): Promise<Object> => {
 /**
  * Function to find if email already exists.
  *
- * @param {value} value
+ * @param {value} string
  * @returns {Promise<User | null>}
  */
-export const findByEmail = async (value: any): Promise<User | null> => {
+export const findByEmail = async (value: string): Promise<User | null> => {
   return await User.findOne({
     where: {
       email: value

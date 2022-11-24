@@ -1,9 +1,15 @@
-import { createUser, fetchUserById, updateUser } from '../dao/user.dao';
+import {
+  createUser,
+  fetchUserById,
+  findByEmail,
+  updateUser
+} from '../dao/user.dao';
 
 import User from '../models/user';
 
 import { errorFormatter } from '../utils/errorUtils';
 import { responseFormatter } from '../utils/responseUtils';
+import { signToken } from '../utils/jwtToken';
 
 /**
  * Service to fetch by id.
@@ -52,6 +58,18 @@ export const fetchById = async (id: number): Promise<any> => {
 export const handleCreateUser = async (payload: User): Promise<any> => {
   let user;
 
+  const isEmailExists = await findByEmail(payload.email);
+
+  if (isEmailExists != null) {
+    return errorFormatter({
+      status: 500,
+      data: {
+        info: 'Email already exists'
+      },
+      message: { type: 'create', data: 'User' }
+    });
+  }
+
   try {
     user = await createUser(payload);
   } catch (error) {
@@ -64,9 +82,18 @@ export const handleCreateUser = async (payload: User): Promise<any> => {
     });
   }
 
+  const accessToken = signToken(user.email, '60');
+  const refreshToken = signToken(user.email, '1d');
+
   return responseFormatter({
     status: 201,
-    data: user,
+    data: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      accessToken,
+      refreshToken
+    },
     message: { type: 'create', data: 'User' }
   });
 };
@@ -110,5 +137,58 @@ export const handleUpdateUser = async (
     status: 200,
     data: user,
     message: { type: 'update', data: 'User' }
+  });
+};
+
+/**
+ * Function to handle user login.
+ *
+ * @param {object} payload
+ * @return {Promise}
+ */
+export const handleUserLogin = async (payload: {
+  email: 'string';
+  password: 'string';
+}): Promise<Response | any> => {
+  let user;
+
+  try {
+    user = await User.findOne({
+      where: {
+        email: payload.email,
+        password: payload.password
+      }
+    });
+  } catch (error) {
+    return errorFormatter({
+      status: 401,
+      data: {
+        error
+      },
+      message: { type: 'login', data: 'User' }
+    });
+  }
+
+  if (user === null) {
+    return errorFormatter({
+      status: 404,
+      data: {
+        info: 'Email or password you have entered is incorrect'
+      },
+      message: { type: 'login', data: 'User' }
+    });
+  }
+
+  const accessToken = signToken(user.email, '60');
+  const refreshToken = signToken(user.email, '1d');
+
+  return responseFormatter({
+    status: 200,
+    data: {
+      email: user.email,
+      accessToken,
+      refreshToken
+    },
+    message: { type: 'login', data: 'User' }
   });
 };
