@@ -1,9 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import router from './routes/index.routes';
-import { initialize } from './config/database.config';
-import { envConfig } from './config/environment.config';
-import logger from './utils/logger';
+import router from '../routes/index.routes';
+import { initialize } from '../config/database.config';
+import { envConfig } from '../config/environment.config';
+import logger from '../utils/logger';
 import cors from 'cors';
 
 const app = express();

@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./build/app.js",
+    "start": "node ./build/api/index.js",
     "build": "tsc -p .",
-    "dev": "nodemon ./src/app.ts",
+    "dev": "nodemon ./src/api/index.ts",
     "test": "",
     "lint": "eslint . --ext .ts",
     "prepare": "husky install"
