@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./build/api/index.js",
+    "start": "node ./build/index.js",
     "build": "tsc -p .",
-    "dev": "nodemon ./src/api/index.ts",
+    "dev": "nodemon ./src/index.ts",
     "test": "",
     "lint": "eslint . --ext .ts",
     "prepare": "husky install"
@@ -52,8 +52,5 @@
       "prettier --config .prettierrc.json --write",
       "eslint --fix"
     ]
-  },
-  "engines": {
-    "node": "16.x"
   }
 }
