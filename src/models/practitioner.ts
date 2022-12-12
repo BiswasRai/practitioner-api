@@ -18,10 +18,10 @@ class Practitioner extends Model<
   declare fullName: string;
   declare email: string;
   declare contact: number;
-  declare DOB: Date;
+  declare dateOfBirth: Date;
   declare workingDays: number;
-  declare startTime: Date;
-  declare endTime: Date;
+  declare startTime: TimeRanges;
+  declare endTime: TimeRanges;
   declare permanentAddress: string;
   declare temporaryAddress: string;
   declare isSpecialist: boolean;
@@ -46,10 +46,10 @@ Practitioner.init(
       unique: true
     },
     contact: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false
     },
-    DOB: {
+    dateOfBirth: {
       type: DataTypes.DATE,
       allowNull: false
     },
@@ -58,11 +58,11 @@ Practitioner.init(
       allowNull: false
     },
     startTime: {
-      type: DataTypes.DATE,
+      type: DataTypes.TIME,
       allowNull: false
     },
     endTime: {
-      type: DataTypes.DATE,
+      type: DataTypes.TIME,
       allowNull: false
     },
     permanentAddress: {

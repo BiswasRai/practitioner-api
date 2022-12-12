@@ -11,5 +11,8 @@ export const envConfig = {
   DATABASE_HOST: process.env.DATABASE_HOST ?? '',
   NODE_ENV: process.env.NODE_ENV ?? '',
   DATABASE_URL: process.env.DATABASE_URL ?? '',
-  JWT_SECRET_KEY: process.env.JWT_SECRET_KEY ?? ''
+  JWT_SECRET_KEY: process.env.JWT_SECRET_KEY ?? '',
+  LOG_DIR: process.env.LOG_DIR ?? '',
+  LOG_ERROR: process.env.LOG_ERROR ?? '',
+  LOG_LEVEL: process.env.LOG_LEVEL ?? ''
 };

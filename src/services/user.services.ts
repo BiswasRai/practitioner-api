@@ -10,6 +10,7 @@ import User from '../models/user';
 import { errorFormatter } from '../utils/errorUtils';
 import { responseFormatter } from '../utils/responseUtils';
 import { signToken } from '../utils/jwtToken';
+import logger from '../utils/logger';
 
 /**
  * Service to fetch by id.
@@ -82,7 +83,7 @@ export const handleCreateUser = async (payload: User): Promise<any> => {
     });
   }
 
-  const accessToken = signToken(user.email, '60');
+  const accessToken = signToken(user.email, '600');
   const refreshToken = signToken(user.email, '1d');
 
   return responseFormatter({
@@ -160,6 +161,7 @@ export const handleUserLogin = async (payload: {
       }
     });
   } catch (error) {
+    logger.error(error);
     return errorFormatter({
       status: 401,
       data: {
@@ -170,6 +172,8 @@ export const handleUserLogin = async (payload: {
   }
 
   if (user === null) {
+    logger.error('Invalid email or password');
+
     return errorFormatter({
       status: 404,
       data: {
@@ -179,7 +183,7 @@ export const handleUserLogin = async (payload: {
     });
   }
 
-  const accessToken = signToken(user.email, '60');
+  const accessToken = signToken(user.email, '1d');
   const refreshToken = signToken(user.email, '1d');
 
   return responseFormatter({

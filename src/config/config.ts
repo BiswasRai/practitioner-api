@@ -1,4 +1,4 @@
-import { envConfig } from '../src/config/environment.config';
+import { envConfig } from './environment.config';
 import fs from 'fs';
 
 module.exports = {

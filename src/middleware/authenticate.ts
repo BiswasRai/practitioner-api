@@ -19,7 +19,7 @@ export const authenticate = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const bearerToken = req.header('Authorization')?.replace('Bearer', '');
+  const bearerToken = req.header('Authorization')?.replace('Bearer', '').trim();
 
   if (bearerToken === null) {
     return res.sendStatus(401).json({

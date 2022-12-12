@@ -17,6 +17,7 @@ module.exports = {
     '@typescript-eslint/semi': 'off',
     'jsdoc/check-tag-names': 'off',
     'func-names': 'off',
+    'space-before-function-paren': 'off',
     'require-jsdoc': [
       'error',
       {

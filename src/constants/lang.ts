@@ -13,3 +13,7 @@ export const SUCCESS_MESSAGE = {
   FETCHED: (fieldName: string) => `Successfully fetched the ${fieldName}.`,
   DELETED: (fieldName: string) => `Successfully deleted the ${fieldName}.`
 };
+
+export const VALIDATION_MESSAGE = {
+  REQUIRED: (fieldName: string) => `The ${fieldName} field is required.`
+};
