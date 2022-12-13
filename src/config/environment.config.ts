@@ -14,5 +14,8 @@ export const envConfig = {
   JWT_SECRET_KEY: process.env.JWT_SECRET_KEY ?? '',
   LOG_DIR: process.env.LOG_DIR ?? '',
   LOG_ERROR: process.env.LOG_ERROR ?? '',
-  LOG_LEVEL: process.env.LOG_LEVEL ?? ''
+  LOG_LEVEL: process.env.LOG_LEVEL ?? '',
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME
 };
