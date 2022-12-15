@@ -14,6 +14,16 @@
             "date": 1670904907741,
             "name": "log/2022-12-13-debug.log",
             "hash": "02ccd2ace2e6da77e661f8f2fbdc6c7300e20f91786de1f3036739f45dc25c8c"
+        },
+        {
+            "date": 1671013103238,
+            "name": "log/2022-12-14-debug.log",
+            "hash": "d6b9ed73ce85bc9be4fd845f78216c2dbff36a4594238218b6ca381ff473882b"
+        },
+        {
+            "date": 1671076941627,
+            "name": "log/2022-12-15-debug.log",
+            "hash": "75a54d501d81e3dbc23c09f6c439d0d6a1dcb2d3df51d8cd107fe86c3e1ee0ef"
         }
     ],
     "hashType": "sha256"

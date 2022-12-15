@@ -29,7 +29,7 @@ export const errorFormatter = (
  * @param message object
  * @returns string
  */
-const handleErrorMessage = (message: {
+export const handleErrorMessage = (message: {
   type: string;
   data: string;
 }): string => {

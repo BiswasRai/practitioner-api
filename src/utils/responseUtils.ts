@@ -29,7 +29,7 @@ export const responseFormatter = (
  * @param message object
  * @returns string
  */
-const handleSuccessMessage = (message: {
+export const handleSuccessMessage = (message: {
   type: string;
   data: string;
 }): string => {

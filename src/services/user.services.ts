@@ -83,7 +83,7 @@ export const handleCreateUser = async (payload: User): Promise<any> => {
     });
   }
 
-  const accessToken = signToken(user.email, '600');
+  const accessToken = signToken(user.email, '1d');
   const refreshToken = signToken(user.email, '1d');
 
   return responseFormatter({
