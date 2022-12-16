@@ -4,16 +4,6 @@ import cloudinary from '../config/cloudinary.config';
 import { errorFormatter } from '../utils/errorUtils';
 import { responseFormatter } from '../utils/responseUtils';
 
-const IMAGE_UPLOAD_FOLDERS = {
-  PRACTITIONER: 'practitioner',
-  ROOT: 'practitioner-management'
-};
-
-const IMAGE_RES = {
-  WIDTH: 400,
-  HEIGHT: 400
-};
-
 /**
  *
  * @param req
@@ -24,7 +14,6 @@ export const imageUpload = async (
 ): Promise<Response> => {
   let imageURL: any;
 
-  console.log(req.files.file.tempFilePath, 'hello');
   try {
     imageURL = await cloudinary.uploader.upload(req.files.file.tempFilePath, {
       public_id: `${Date.now()}`,
