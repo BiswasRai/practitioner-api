@@ -17,9 +17,11 @@ app.use('/api/v1', router);
 
 initialize();
 
-app.listen(envConfig.PORT, () => {
-  console.log('working');
-  logger.info('Server started at  ');
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(envConfig.PORT, () => {
+    console.log('working');
+    logger.info('Server started at  ');
+  });
+}
 
 export default app;

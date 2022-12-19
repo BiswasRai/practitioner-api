@@ -19,7 +19,7 @@ import logger from '../utils/logger';
  * Fix: any in return
  */
 export const fetchById = async (id: number): Promise<any> => {
-  let user;
+  let user: any;
 
   try {
     user = await fetchUserById(id);
@@ -45,7 +45,14 @@ export const fetchById = async (id: number): Promise<any> => {
 
   return responseFormatter({
     status: 200,
-    data: user,
+    data: {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      createUser: user.createdAt,
+      updateUser: user.updatedAt
+    },
     message: { type: 'fetch', data: 'User' }
   });
 };
@@ -65,7 +72,7 @@ export const handleCreateUser = async (payload: User): Promise<any> => {
     return errorFormatter({
       status: 500,
       data: {
-        info: 'Email already exists'
+        info: 'Email already exists.'
       },
       message: { type: 'create', data: 'User' }
     });
@@ -92,6 +99,7 @@ export const handleCreateUser = async (payload: User): Promise<any> => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      id: user.id,
       accessToken,
       refreshToken
     },
@@ -189,6 +197,7 @@ export const handleUserLogin = async (payload: {
   return responseFormatter({
     status: 200,
     data: {
+      id: user.id,
       email: user.email,
       accessToken,
       refreshToken
